@@ -1,0 +1,3 @@
+### Get all pizzas
+GET http://localhost:3333/api/pizzas
+Accept: application/json
