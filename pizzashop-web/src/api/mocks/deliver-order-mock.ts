@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw'
 
-import { DeliverOrderProps } from '../deliver-order'
+import { DeliverOrderProps } from '../services/deliver-order'
 
 export const deliverOrderMock = http.patch<DeliverOrderProps, never, never>(
   '/orders/:orderId/deliver',

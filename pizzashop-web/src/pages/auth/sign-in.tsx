@@ -5,7 +5,7 @@ import { Link, useSearchParams } from 'react-router'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
-import { signIn } from '@/api/sign-in'
+import { signIn } from '@/api/services/sign-in'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'

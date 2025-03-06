@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw'
 
-import type { GetOrdersResponse } from '../get-orders'
+import type { GetOrdersResponse } from '../services/get-orders'
 
 type Orders = GetOrdersResponse['orders']
 

@@ -1,9 +1,9 @@
-import { api } from "@/lib/axios";
+import { api } from '@/lib/axios'
 
 export interface ApproveOrderProps {
-  orderId: string;
+  orderId: string
 }
 
 export const approveOrder = async ({ orderId }: ApproveOrderProps) => {
-  await api.patch(`/orders/${orderId}/approve`);
-};
+  await api.patch(`/orders/${orderId}/approve`)
+}

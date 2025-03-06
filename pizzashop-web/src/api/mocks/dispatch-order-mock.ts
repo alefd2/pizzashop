@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw'
 
-import { DispatchOrderProps } from '../dispatch-order'
+import { DispatchOrderProps } from '../services/dispatch-order'
 
 export const dispatchOrderMock = http.patch<DispatchOrderProps, never, never>(
   '/orders/:orderId/dispatch',

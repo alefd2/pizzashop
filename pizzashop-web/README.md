@@ -22,9 +22,13 @@ Para garantir a qualidade do código, utilizamos as seguintes ferramentas:
 
 [![Playwright](https://img.shields.io/badge/Playwright-45ba4b?style=for-the-badge&logo=playwright&logoColor=white)](https://playwright.dev/) - Framework para testes end-to-end (E2E) automatizados
 
+[![MSW](https://img.shields.io/badge/MSW-black?style=for-the-badge&logo=mock-service-worker&logoColor=white)](https://mswjs.io/) - Mock Service Worker para interceptar e simular chamadas de API em testes
+
 Plugins adicionais:
 
 [![jsdom](https://img.shields.io/badge/jsdom-yellow?style=for-the-badge&logo=javascript&logoColor=black)](https://github.com/jsdom/jsdom) - Implementação do DOM para ambiente Node.js, permitindo testar código browser-like
+
+[![User Event](https://img.shields.io/badge/user--event-gray?style=for-the-badge&logo=testing-library&logoColor=white)](https://testing-library.com/docs/user-event/intro/) - Biblioteca para simular interações do usuário em testes
 
 
 Para executar os testes:
@@ -34,12 +38,12 @@ npm run test
 # ou
 yarn test
 
-# Executa os testes unitários em modo watch
-npm run test:watch
+# Executa os testes com os mocks do MSW
+npm run dev:test
 # ou
-yarn test:watch
+yarn dev:test
 
-# Executa os testes E2E com Playwright
+# Executa os testes E2E com Playwright com a ui (Deve-se executar a versão web com os mocks)
 npm run test:e2e
 # ou
 yarn test:e2e

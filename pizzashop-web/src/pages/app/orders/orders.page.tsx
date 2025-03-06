@@ -4,46 +4,46 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { Helmet } from "react-helmet-async";
-import { OrderTableRow } from "./components/order-table-row.comp";
-import { OrderTableFilters } from "./components/order-table-filters.comp";
-import { Pagination } from "@/components/paginations/pagination.comp";
-import { useQuery } from "@tanstack/react-query";
-import { getOrders } from "@/api/get-orders";
-import { useSearchParams } from "react-router";
-import { z } from "zod";
-import { OrderTableSkeleton } from "./components/order-table-skeleton";
+} from '@/components/ui/table'
+import { Helmet } from 'react-helmet-async'
+import { OrderTableRow } from './components/order-table-row.comp'
+import { OrderTableFilters } from './components/order-table-filters.comp'
+import { Pagination } from '@/components/paginations/pagination.comp'
+import { useQuery } from '@tanstack/react-query'
+import { getOrders } from '@/api/services/get-orders'
+import { useSearchParams } from 'react-router'
+import { z } from 'zod'
+import { OrderTableSkeleton } from './components/order-table-skeleton'
 
 export const OrdersPage = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams()
 
-  const orderId = searchParams.get("orderId");
-  const customerName = searchParams.get("customerName");
-  const status = searchParams.get("status");
+  const orderId = searchParams.get('orderId')
+  const customerName = searchParams.get('customerName')
+  const status = searchParams.get('status')
 
   const pageIndex = z.coerce
     .number()
     .transform((page) => page - 1)
-    .parse(searchParams.get("page") ?? "1");
+    .parse(searchParams.get('page') ?? '1')
 
   const { data: result, isLoading: isLoadingOrders } = useQuery({
-    queryKey: ["orders", pageIndex, orderId, customerName, status],
+    queryKey: ['orders', pageIndex, orderId, customerName, status],
     queryFn: () =>
       getOrders({
         pageIndex,
         orderId,
         customerName,
-        status: status === "all" ? null : status,
+        status: status === 'all' ? null : status,
       }),
-  });
+  })
 
   const handlePaginate = (pageIndex: number) => {
     setSearchParams((urlStateString) => {
-      urlStateString.set("page", String(pageIndex + 1));
-      return urlStateString;
-    });
-  };
+      urlStateString.set('page', String(pageIndex + 1))
+      return urlStateString
+    })
+  }
 
   return (
     <>
@@ -88,5 +88,5 @@ export const OrdersPage = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}

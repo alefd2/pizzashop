@@ -1,14 +1,14 @@
-import { getMonthOrdersAmount } from "@/api/get-month-orders-amount";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useQuery } from "@tanstack/react-query";
-import { DollarSign } from "lucide-react";
-import { MetricCardSkeleton } from "./metric-card-skeleton";
+import { getMonthOrdersAmount } from '@/api/services/get-month-orders-amount'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { useQuery } from '@tanstack/react-query'
+import { DollarSign } from 'lucide-react'
+import { MetricCardSkeleton } from './metric-card-skeleton'
 
 export const MonthOrderAmountCard = () => {
   const { data: monthOrdersAmount } = useQuery({
     queryFn: getMonthOrdersAmount,
-    queryKey: ["metrics", "mount-orders-amount"],
-  });
+    queryKey: ['metrics', 'mount-orders-amount'],
+  })
 
   return (
     <Card>
@@ -25,14 +25,14 @@ export const MonthOrderAmountCard = () => {
                 <>
                   <span className="text-emerald-500 dark:text-emerald-400">
                     +{monthOrdersAmount.diffFromLastMonth}%
-                  </span>{" "}
+                  </span>{' '}
                   em relação ao mês passado
                 </>
               ) : (
                 <>
                   <span className="text-rose-500 dark:text-rose-400">
                     {monthOrdersAmount.diffFromLastMonth}%
-                  </span>{" "}
+                  </span>{' '}
                   em relação ao mês passado
                 </>
               )}
@@ -43,5 +43,5 @@ export const MonthOrderAmountCard = () => {
         )}
       </CardContent>
     </Card>
-  );
-};
+  )
+}

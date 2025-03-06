@@ -3,7 +3,7 @@ import { http, HttpResponse } from 'msw'
 import {
   GetOrderDetailsParams,
   GetOrderDetailsResponse,
-} from '../get-order-datails'
+} from '../services/get-order-datails'
 
 export const getOrderDetailsMock = http.get<
   GetOrderDetailsParams,

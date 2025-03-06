@@ -1,4 +1,4 @@
-import { getMonthRevenue } from '@/api/get-month-revenue'
+import { getMonthRevenue } from '@/api/services/get-month-revenue'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { useQueryClient, useQuery } from '@tanstack/react-query'
 import { DollarSign } from 'lucide-react'

@@ -1,13 +1,13 @@
-import { getOrdersDetails } from "@/api/get-order-datails";
-import { OrderStatus } from "@/components/orders/order-status";
-import { Button } from "@/components/ui/button";
+import { getOrdersDetails } from '@/api/services/get-order-datails'
+import { OrderStatus } from '@/components/orders/order-status'
+import { Button } from '@/components/ui/button'
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog'
 import {
   Table,
   TableBody,
@@ -16,23 +16,23 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { useQuery } from "@tanstack/react-query";
-import { formatDistanceToNow } from "date-fns";
-import { ptBR } from "date-fns/locale";
-import { OrderDetailsSkeleton } from "./order-details-skeleton";
+} from '@/components/ui/table'
+import { useQuery } from '@tanstack/react-query'
+import { formatDistanceToNow } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
+import { OrderDetailsSkeleton } from './order-details-skeleton'
 
 interface OrderDetailsProps {
-  orderId: string;
-  isOpen: boolean;
+  orderId: string
+  isOpen: boolean
 }
 
 export const OrderDetails = ({ orderId, isOpen }: OrderDetailsProps) => {
   const { data: order } = useQuery({
-    queryKey: ["order", orderId],
+    queryKey: ['order', orderId],
     queryFn: () => getOrdersDetails({ orderId }),
     enabled: isOpen,
-  });
+  })
 
   return (
     <DialogContent>
@@ -44,7 +44,7 @@ export const OrderDetails = ({ orderId, isOpen }: OrderDetailsProps) => {
             <TableBody>
               <TableRow>
                 <TableCell className="text-muted-foreground">
-                  <OrderStatus status={order?.status ?? "canceled"} />
+                  <OrderStatus status={order?.status ?? 'canceled'} />
                 </TableCell>
                 <TableCell className="flex justify-end">
                   <div className="flex items-center gap-2">
@@ -69,7 +69,7 @@ export const OrderDetails = ({ orderId, isOpen }: OrderDetailsProps) => {
                 </TableCell>
                 <TableCell className="flex justify-end">
                   <div className="flex items-center gap-2">
-                    <span>{order?.customer.phone ?? "Não informado"}</span>
+                    <span>{order?.customer.phone ?? 'Não informado'}</span>
                   </div>
                 </TableCell>
               </TableRow>
@@ -117,22 +117,22 @@ export const OrderDetails = ({ orderId, isOpen }: OrderDetailsProps) => {
                       {items.quantity}
                     </TableCell>
                     <TableCell className="text-right">
-                      {(items.priceInCents / 100).toLocaleString("pt-BR", {
-                        style: "currency",
-                        currency: "BRL",
+                      {(items.priceInCents / 100).toLocaleString('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL',
                       })}
                     </TableCell>
                     <TableCell className="text-right">
                       {(
                         (items.priceInCents * items.quantity) /
                         100
-                      ).toLocaleString("pt-BR", {
-                        style: "currency",
-                        currency: "BRL",
+                      ).toLocaleString('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL',
                       })}
                     </TableCell>
                   </TableRow>
-                );
+                )
               })}
             </TableBody>
             <TableFooter>
@@ -141,9 +141,9 @@ export const OrderDetails = ({ orderId, isOpen }: OrderDetailsProps) => {
                   Total do pedido
                 </TableCell>
                 <TableCell className="text-right font-medium">
-                  {(order.totalInCents / 100).toLocaleString("pt-BR", {
-                    style: "currency",
-                    currency: "BRL",
+                  {(order.totalInCents / 100).toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
                   })}
                 </TableCell>
               </TableRow>
@@ -154,5 +154,5 @@ export const OrderDetails = ({ orderId, isOpen }: OrderDetailsProps) => {
         <OrderDetailsSkeleton />
       )}
     </DialogContent>
-  );
-};
+  )
+}

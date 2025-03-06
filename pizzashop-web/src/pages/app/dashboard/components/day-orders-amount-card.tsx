@@ -1,14 +1,14 @@
-import { getDayOrdersAmount } from "@/api/get-day-orders-amount";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useQuery } from "@tanstack/react-query";
-import { Utensils } from "lucide-react";
-import { MetricCardSkeleton } from "./metric-card-skeleton";
+import { getDayOrdersAmount } from '@/api/services/get-day-orders-amount'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { useQuery } from '@tanstack/react-query'
+import { Utensils } from 'lucide-react'
+import { MetricCardSkeleton } from './metric-card-skeleton'
 
 export const DayOrderAmountCard = () => {
   const { data: dayOrdersAmount } = useQuery({
     queryFn: getDayOrdersAmount,
-    queryKey: ["metrics", "day-orders-amount"],
-  });
+    queryKey: ['metrics', 'day-orders-amount'],
+  })
 
   return (
     <Card>
@@ -20,21 +20,21 @@ export const DayOrderAmountCard = () => {
         {dayOrdersAmount ? (
           <>
             <span className="text-2xl font-bold tracking-tight">
-              {dayOrdersAmount.amount.toLocaleString("pt-BR")}
+              {dayOrdersAmount.amount.toLocaleString('pt-BR')}
             </span>
             <p className="text-xs text-muted-foreground">
               {dayOrdersAmount.diffFromYesterday >= 0 ? (
                 <>
                   <span className="text-emerald-500 dark:text-emerald-400">
                     +{dayOrdersAmount.diffFromYesterday}%
-                  </span>{" "}
+                  </span>{' '}
                   em relação ao mês anterior
                 </>
               ) : (
                 <>
                   <span className="text-rose-500 dark:text-rose-400">
                     {dayOrdersAmount.diffFromYesterday}%
-                  </span>{" "}
+                  </span>{' '}
                   em relação ao mês anterior
                 </>
               )}
@@ -45,5 +45,5 @@ export const DayOrderAmountCard = () => {
         )}
       </CardContent>
     </Card>
-  );
-};
+  )
+}

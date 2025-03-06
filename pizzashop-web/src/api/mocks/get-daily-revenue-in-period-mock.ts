@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw'
 
-import { GetDailyRevenueInPeriodResponse } from '../get-daily-revenue-in-period'
+import { GetDailyRevenueInPeriodResponse } from '../services/get-daily-revenue-in-period'
 
 export const getDailyRevenueInPeriodMock = http.get<
   never,

@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw'
 
-import { GetPopularProductsProps } from '../get-popular-products'
+import { GetPopularProductsProps } from '../services/get-popular-products'
 
 export const getPopularProductsMock = http.get<
   never,
