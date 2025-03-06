@@ -7,12 +7,12 @@ import {
   products,
   restaurants,
   users,
-} from "./schema"
-import { faker } from "@faker-js/faker"
-import { db } from "./connection"
-import chalk from "chalk"
-import { orderItems } from "./schema/order-items"
-import { createId } from "@paralleldrive/cuid2"
+} from './schema'
+import { faker } from '@faker-js/faker'
+import { db } from './connection'
+import chalk from 'chalk'
+import { orderItems } from './schema/order-items'
+import { createId } from '@paralleldrive/cuid2'
 
 /**
  * Reset database
@@ -25,7 +25,7 @@ await db.delete(restaurants)
 await db.delete(authLinks)
 await db.delete(users)
 
-console.log(chalk.yellow("✔ Database reset"))
+console.log(chalk.yellow('✔ Database reset'))
 
 /**
  * Create customers
@@ -36,17 +36,17 @@ const [customer1, customer2] = await db
     {
       name: faker.person.fullName(),
       email: faker.internet.email(),
-      role: "customer",
+      role: 'customer',
     },
     {
       name: faker.person.fullName(),
       email: faker.internet.email(),
-      role: "customer",
+      role: 'customer',
     },
   ])
   .returning()
 
-console.log(chalk.yellow("✔ Created customers"))
+console.log(chalk.yellow('✔ Created customers'))
 
 /**
  * Create restaurant manager
@@ -55,12 +55,12 @@ const [manager] = await db
   .insert(users)
   .values({
     name: faker.person.fullName(),
-    email: "alefolivfeira@gmail.com",
-    role: "manager",
+    email: 'alefolivfeira@gmail.com',
+    role: 'manager',
   })
   .returning()
 
-console.log(chalk.yellow("✔ Created manager"))
+console.log(chalk.yellow('✔ Created manager'))
 
 /**
  * Create restaurant
@@ -74,7 +74,7 @@ const [restaurant] = await db
   })
   .returning()
 
-console.log(chalk.yellow("✔ Created restaurant"))
+console.log(chalk.yellow('✔ Created restaurant'))
 
 /**
  * Create products
@@ -89,7 +89,7 @@ const availableProducts = await db
           min: 190,
           max: 490,
           dec: 0,
-        })
+        }),
       ),
       restaurantId: restaurant.id,
       description: faker.commerce.productDescription(),
@@ -101,7 +101,7 @@ const availableProducts = await db
           min: 190,
           max: 490,
           dec: 0,
-        })
+        }),
       ),
       restaurantId: restaurant.id,
       description: faker.commerce.productDescription(),
@@ -113,7 +113,7 @@ const availableProducts = await db
           min: 190,
           max: 490,
           dec: 0,
-        })
+        }),
       ),
       restaurantId: restaurant.id,
       description: faker.commerce.productDescription(),
@@ -125,7 +125,7 @@ const availableProducts = await db
           min: 190,
           max: 490,
           dec: 0,
-        })
+        }),
       ),
       restaurantId: restaurant.id,
       description: faker.commerce.productDescription(),
@@ -137,7 +137,7 @@ const availableProducts = await db
           min: 190,
           max: 490,
           dec: 0,
-        })
+        }),
       ),
       restaurantId: restaurant.id,
       description: faker.commerce.productDescription(),
@@ -149,7 +149,7 @@ const availableProducts = await db
           min: 190,
           max: 490,
           dec: 0,
-        })
+        }),
       ),
       restaurantId: restaurant.id,
       description: faker.commerce.productDescription(),
@@ -161,7 +161,7 @@ const availableProducts = await db
           min: 190,
           max: 490,
           dec: 0,
-        })
+        }),
       ),
       restaurantId: restaurant.id,
       description: faker.commerce.productDescription(),
@@ -173,7 +173,7 @@ const availableProducts = await db
           min: 190,
           max: 490,
           dec: 0,
-        })
+        }),
       ),
       restaurantId: restaurant.id,
       description: faker.commerce.productDescription(),
@@ -185,7 +185,7 @@ const availableProducts = await db
           min: 190,
           max: 490,
           dec: 0,
-        })
+        }),
       ),
       restaurantId: restaurant.id,
       description: faker.commerce.productDescription(),
@@ -193,7 +193,7 @@ const availableProducts = await db
   ])
   .returning()
 
-console.log(chalk.yellow("✔ Created products"))
+console.log(chalk.yellow('✔ Created products'))
 
 const ordersToInsert: (typeof orders.$inferInsert)[] = []
 const orderItemsToPush: (typeof orderItems.$inferInsert)[] = []
@@ -229,11 +229,11 @@ for (let i = 0; i < 200; i++) {
     customerId: faker.helpers.arrayElement([customer1.id, customer2.id]),
     restaurantId: restaurant.id,
     status: faker.helpers.arrayElement([
-      "pending",
-      "canceled",
-      "processing",
-      "delivering",
-      "delivered",
+      'pending',
+      'canceled',
+      'processing',
+      'delivering',
+      'delivered',
     ]),
     totalInCents,
     createdAt: faker.date.recent({
@@ -245,8 +245,8 @@ for (let i = 0; i < 200; i++) {
 await db.insert(orders).values(ordersToInsert)
 await db.insert(orderItems).values(orderItemsToPush)
 
-console.log(chalk.yellow("✔ Created orders"))
+console.log(chalk.yellow('✔ Created orders'))
 
-console.log(chalk.greenBright("Database seeded successfully!"))
+console.log(chalk.greenBright('Database seeded successfully!'))
 
 process.exit()
