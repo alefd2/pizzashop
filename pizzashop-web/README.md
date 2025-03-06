@@ -49,7 +49,7 @@ yarn test:e2e
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/seu-usuario/pizzashop-web.git
+git clone https://github.com/alefd2/pizzashop-web.git
 cd pizzashop-web
 ```
 
